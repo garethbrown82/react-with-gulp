@@ -6,12 +6,14 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
     sourcemaps = require('gulp-sourcemaps'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    watch = require('gulp-watch'),
+    batch = require('gulp-batch');
 
 var BUILD_DIR = 'build/';
 
-function compile(watch) {
-    var bundler = browserify('app/index.jsx', {
+function compile() {
+    var bundler = browserify('src/index.jsx', {
         debug: true, // write own sourcemaps
         extensions: ['.js', '.jsx', '.json']
     });
@@ -32,7 +34,7 @@ gulp.task('build:js', function() {
 })
 
 gulp.task('build:html', function() {
-    return gulp.src(['app/**/*.html', '!node_modules/**/*'])
+    return gulp.src(['src/**/*.html', '!node_modules/**/*'])
         .pipe(gulp.dest(BUILD_DIR));
 })
 
@@ -46,5 +48,12 @@ gulp.task('webserver', function() {
         .pipe(webserver({
             livereload: true // reload browser page if something in BUILD_DIR updates
         }));
+});
+
+// Watch any change to source jsx
+gulp.task('watch',  function () {
+    watch(['src/**/*.jsx', 'src/**/*.js'], batch(function (events, done) {
+        gulp.start('build', done);
+    }));
 });
 

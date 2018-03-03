@@ -7,5 +7,5 @@ window.onload = () => {
     root.id = 'react-root';
     document.body.appendChild(root);
 
-    render(<Button text="Hello, World!" />, root);
+    render(<Button text="Hello, World! Watch me?" />, root);
 }
