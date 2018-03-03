@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 export default class Button extends React.Component {
     render() {
         return (
-            <button
-                onClick={this.props.onClick}>
+            <button>
                 {this.props.text || this.props.children}
             </button>
         );
@@ -14,5 +13,4 @@ export default class Button extends React.Component {
 
 Button.propTypes = {
     text: PropTypes.string,
-    onClick: PropTypes.func.isRequired
 }
