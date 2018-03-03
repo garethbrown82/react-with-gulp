@@ -1,3 +1,6 @@
+// #gulp build - to build .js and .html
+// #gulp webserver - to start webserver
+
 var gulp = require('gulp'),
     browserify = require('browserify'),
     source = require('vinyl-source-stream'),
@@ -8,7 +11,7 @@ var gulp = require('gulp'),
 var BUILD_DIR = 'build/';
 
 function compile(watch) {
-    var bundler = browserify('app/index.js', {
+    var bundler = browserify('app/index.jsx', {
         debug: true, // write own sourcemaps
         extensions: ['.js', '.jsx', '.json']
     });
@@ -44,3 +47,4 @@ gulp.task('webserver', function() {
             livereload: true // reload browser page if something in BUILD_DIR updates
         }));
 });
+
