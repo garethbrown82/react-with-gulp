@@ -100,7 +100,7 @@ gulp.task('webserver', function() {
 
 // Watch any change to source jsx and html
 gulp.task('watch',  function () {
-    watch(['src/**/*.jsx', 'src/**/*.js', 'src/**/*.html', 'src/**/*.css'], batch(function (events, done) {
+    watch(['src/index.jsx', 'src/**/*.jsx', 'src/**/*.js', 'src/**/*.html', 'src/**/*.css'], batch(function (events, done) {
         gulp.start('default', done);
     }));
 });
